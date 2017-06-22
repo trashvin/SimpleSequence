@@ -1,4 +1,4 @@
-# SimpleSequence ![appveyor status](https://ci.appveyor.com/api/projects/status/github/trashvin/simplesequence)
+# SimpleSequence [![Build status](https://ci.appveyor.com/api/projects/status/3dftm9x1rvfjusk0?svg=true)](https://ci.appveyor.com/project/trashvin/simplesequence)
 Is a custom sequence generator. Supports InMemory , Text File and MSSQL storage. Developers can also create their own storage providers.
 
 ## Usage
