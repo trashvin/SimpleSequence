@@ -16,7 +16,7 @@ namespace SimpleSequence.Tests
         {
             _config = new SequenceConfiguration()
             {
-                IDFormat = "N",
+                Format = "N",
                 SequenceLenght = 5,
                 FillerCharacter = '0',
                 ApplicationName = "Test",
@@ -35,7 +35,7 @@ namespace SimpleSequence.Tests
             _mockTextStorage = new Mock<IIDStorage>(MockBehavior.Strict);
             _mockTextStorage.Setup(p => p.GetNextSequenceID()).Returns(expectedSequence);
 
-            _config.IDFormat = format;
+            _config.Format = format;
             Generator systemUnderTest = new Generator(_mockTextStorage.Object, _config);
             var result = systemUnderTest.GenerateID(customs);
 

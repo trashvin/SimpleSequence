@@ -27,7 +27,7 @@ namespace SimpleSequence
         /// 4. 1N2 = AAA00004XXX(Assume Custom Value 1 = AAA ; Custom Value 2 = XXX )
         /// 5. {ABC}-N = ABC-00004
         /// </summary>
-        public string IDFormat { get; set; }
+        public string Format { get; set; }
         /// <summary>
         /// The name of application using the assembly.
         /// </summary>

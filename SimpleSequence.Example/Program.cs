@@ -62,7 +62,7 @@ namespace SimpleSequence.Example
         {
             SequenceConfiguration config = new SequenceConfiguration()
             {
-                IDFormat = format,
+                Format = format,
                 ApplicationName = _appName,
                 SequenceLenght = _seqLen,
                 FillerCharacter = _filler
@@ -79,7 +79,7 @@ namespace SimpleSequence.Example
         {
             SequenceConfiguration config = new SequenceConfiguration()
             {
-                IDFormat = format,
+                Format = format,
                 ApplicationName = _appName,
                 SequenceLenght = _seqLen,
                 FillerCharacter = _filler

@@ -38,7 +38,7 @@ namespace SimpleSequence
                 //Generate format
                 StringBuilder generatedID = new StringBuilder();
 
-                foreach (char letter in _genConfiguration.IDFormat.ToUpper())
+                foreach (char letter in _genConfiguration.Format.ToUpper())
                 {
                     switch (letter)
                     {
