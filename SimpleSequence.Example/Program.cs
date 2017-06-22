@@ -10,86 +10,50 @@ namespace SimpleSequence.Example
 {
     class Program
     {
-        private static string _appName = "Test App";
-        private static int _seqLen = 5;
-        private static char _filler = '0';
-        private static TextFileStorage _fileSource = new TextFileStorage("C:\\Data\\Example.id");
-        private static InMemoryStorage _inMemorySource = new InMemoryStorage();
-        private static MSSQLStorage _msSqlStorage = new MSSQLStorage(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TestDB;Integrated Security=True");
-
-
+        
         static void Main(string[] args)
         {
+            string appName = "Test App";
+            int seqLen = 5;
+            char filler = '0';
+            InMemoryStorage inMemorySource = new InMemoryStorage();
+            Generator generate;
+            SequenceConfiguration config;
+
             string[] customs = null;
             string[] formats = {"N","MDY-N-{ABC}","0N","0:YN-1"};
             int value1 = 1;
             int value2 = 200;
-            
-            Console.WriteLine("Starting Async Call");
 
-            foreach(var format in formats)
+            config = new SequenceConfiguration()
             {
-                string temp1 = value1.ToString().PadLeft(5, '*');
-                string temp2 = value2.ToString().PadLeft(4, '#');
-                customs = new string[]{ temp1,temp2};
-                Task<string> result = GenerateIDAsync(format, customs);
-                result.Wait();
-                Console.WriteLine(string.Format("Generated ID [{0}]: {1}", format, result.Result));
-                value1++;
-                value2++;
-            }
+                Format = "N",
+                ApplicationName = appName,
+                SequenceLenght = seqLen,
+                FillerCharacter = filler,
+                Date = DateTime.Now
+            };
 
-            Console.WriteLine("Starting Sync Call");
+            string temp1 = value1.ToString().PadLeft(5, 'X');
+            string temp2 = value2.ToString().PadLeft(4, 'Y');
 
-            foreach(var format in formats)
-            {
-                string temp1 = value1.ToString().PadLeft(5, '*');
-                string temp2 = value2.ToString().PadLeft(4, '#');
-                customs = new string[]{ temp1,temp2};
+            customs = new string[] { temp1, temp2 };
 
-                string result = GenerateID(format, customs);
-                Console.WriteLine(string.Format("Generated ID [{0}]: {1}", format, result));
+            //N
+            generate = new Generator(config);
+            Console.WriteLine(String.Format("Format : N  ;  Result : {0}", generate.GenerateID()));
 
-                value1++;
-                value2++;
-            }
+            //YN{-TEST}
+            config.Format = "YN{-TEST}";
+            Console.WriteLine(String.Format("Format : N  ;  Result : {0}", generate.GenerateID()));
+
+            //0N1
+            config.Format = "0N1";
+            Console.WriteLine(String.Format("Format : N  ;  Result : {0}", generate.GenerateID(customs)));
+
 
 
             Console.Read();
-        }
-
-        private static async Task<string> GenerateIDAsync(string format, string[] customValues = null)
-        {
-            SequenceConfiguration config = new SequenceConfiguration()
-            {
-                Format = format,
-                ApplicationName = _appName,
-                SequenceLenght = _seqLen,
-                FillerCharacter = _filler
-            };
-
-            Generator generate = new Generator(config);
-
-            Task<string> id = Task.Run(() => generate.GenerateID(customValues));
-                    
-            return await id;
-        }
-
-        private static string GenerateID(string format, string[] customValues = null)
-        {
-            SequenceConfiguration config = new SequenceConfiguration()
-            {
-                Format = format,
-                ApplicationName = _appName,
-                SequenceLenght = _seqLen,
-                FillerCharacter = _filler
-            };
-
-            Generator generate = new Generator(config);
-
-            string id = generate.GenerateID(customValues);
-
-            return id;
         }
 
     }

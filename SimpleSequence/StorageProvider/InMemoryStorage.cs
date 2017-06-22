@@ -27,10 +27,10 @@ namespace SimpleSequence.StorageProvider
         /// <summary>
         /// The class constructor.
         /// </summary>
-        /// <param name="startSequnce">An optional value for the starting sequence. If not provided, the sequence starts with 1.</param>
-        public InMemoryStorage(long startSequnce = 1)
+        /// <param name="startSequence">An optional value for the starting sequence. If not provided, the sequence starts with 1.</param>
+        public InMemoryStorage(long startSequence = 1)
         {
-            _internalCounter = startSequnce;
+            _internalCounter = startSequence;
         }
     }
 }
