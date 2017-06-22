@@ -68,7 +68,7 @@ namespace SimpleSequence.Example
                 FillerCharacter = _filler
             };
 
-            Generator generate = new Generator(_inMemorySource,config);
+            Generator generate = new Generator(config);
 
             Task<string> id = Task.Run(() => generate.GenerateID(customValues));
                     
@@ -85,7 +85,7 @@ namespace SimpleSequence.Example
                 FillerCharacter = _filler
             };
 
-            Generator generate = new Generator(_inMemorySource,config);
+            Generator generate = new Generator(config);
 
             string id = generate.GenerateID(customValues);
 

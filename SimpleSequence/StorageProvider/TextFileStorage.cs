@@ -13,20 +13,20 @@ namespace SimpleSequence.StorageProvider
     /// </summary>
     public class TextFileStorage : IIDStorage
     {
-        /// <summary>
-        /// The complete file name of the file storage accepting source as parameter.
-        /// </summary>
-        public string Source { get; set; }
+        private string Source { get; set; }
         /// <summary>
         /// The constructor.
         /// </summary>
         /// <param name="source">
         /// The storage source.
         /// </param>
-        public TextFileStorage(string source)
+        public TextFileStorage(string source, long startSequence = 1)
         {
             Source = source;
+            _start = startSequence;
         }
+
+        private long _start = 0;
         /// <summary>
         /// This method generates the sequence ID and increments the storage.
         /// </summary>
@@ -60,8 +60,8 @@ namespace SimpleSequence.StorageProvider
             }
             catch
             {
-                await Task.Run(() => WriteAsync("0"));
-                return "0";
+                await Task.Run(() => WriteAsync(_start.ToString()));
+                return _start.ToString();
             }
         }
 

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text;
+using SimpleSequence.StorageProvider;
 
 namespace SimpleSequence
 {
@@ -20,9 +21,16 @@ namespace SimpleSequence
         /// </summary>
         /// <param name="storage">The storage of type IIDStorage.</param>
         /// <param name="configuration">The configuration class of type IDGenConfiguration.</param>
-        public Generator(IIDStorage storage,SequenceConfiguration configuration)
+        public Generator(SequenceConfiguration configuration, IIDStorage storage = null)
         {
-            _storage = storage;
+            if (storage == null)
+            {
+                _storage = new InMemoryStorage();
+            }
+            else
+            {
+                _storage = storage;
+            }
             _genConfiguration = configuration;   
         }
         /// <summary>

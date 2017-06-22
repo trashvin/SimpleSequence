@@ -12,10 +12,6 @@ namespace SimpleSequence.StorageProvider
     public class InMemoryStorage : IIDStorage
     {
         /// <summary>
-        /// The source is irrelevant for this class.
-        /// </summary>
-        public string Source { get; set; }
-        /// <summary>
         /// The method that generates the sequence.
         /// </summary>
         /// <returns>The generated sequence of type long.</returns>

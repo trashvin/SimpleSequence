@@ -14,11 +14,7 @@ namespace SimpleSequence.StorageProvider
     /// </summary>
     public class MSSQLStorage : IIDStorage
     {
-        //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TestDB;Integrated Security=True
-        /// <summary>
-        /// The connection string.
-        /// </summary>
-        public string Source { get; set; }
+        private string Source { get; set; }
         /// <summary>
         /// The method that generates the sequence ID.
         /// </summary>
@@ -29,13 +25,15 @@ namespace SimpleSequence.StorageProvider
             UpdateSequence(id + 1);
             return id;
         }
+        private long _start;
         /// <summary>
         /// The class constructor.
         /// </summary>
         /// <param name="source">The connection string to the DB.</param>
-        public MSSQLStorage(string source)
+        public MSSQLStorage(string source, long startSequence = 1)
         {
             Source = source;
+            _start = startSequence;
         }
 
         private long ReadData()
@@ -51,7 +49,7 @@ namespace SimpleSequence.StorageProvider
                         command.Connection = connection;
                         SqlDataReader reader = command.ExecuteReader();
 
-                        string result = "0";
+                        string result = _start.ToString();
                         while (reader.Read())
                         {
                             result = reader[0].ToString();
@@ -83,7 +81,7 @@ namespace SimpleSequence.StorageProvider
                     } 
                 }
             }
-            catch(Exception ex)
+            catch
             {
 
             }

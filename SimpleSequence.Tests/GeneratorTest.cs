@@ -36,7 +36,7 @@ namespace SimpleSequence.Tests
             _mockTextStorage.Setup(p => p.GetNextSequenceID()).Returns(expectedSequence);
 
             _config.Format = format;
-            Generator systemUnderTest = new Generator(_mockTextStorage.Object, _config);
+            Generator systemUnderTest = new Generator( _config, _mockTextStorage.Object);
             var result = systemUnderTest.GenerateID(customs);
 
             Assert.That(result, Is.EqualTo(expected));
