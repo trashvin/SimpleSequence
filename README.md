@@ -1,5 +1,5 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9cbae0cc213b4d0589e3d8b7a8cadae4)](https://app.codacy.com/app/m3lles/SimpleSequence?utm_source=github.com&utm_medium=referral&utm_content=trashvin/SimpleSequence&utm_campaign=Badge_Grade_Dashboard)
-# SimpleSequence [![Build status](https://ci.appveyor.com/api/projects/status/3dftm9x1rvfjusk0?svg=true)](https://ci.appveyor.com/project/trashvin/simplesequence)
+# SimpleSequence 
+[![Build status](https://ci.appveyor.com/api/projects/status/3dftm9x1rvfjusk0?svg=true)](https://ci.appveyor.com/project/trashvin/simplesequence) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9cbae0cc213b4d0589e3d8b7a8cadae4)](https://app.codacy.com/app/m3lles/SimpleSequence?utm_source=github.com&utm_medium=referral&utm_content=trashvin/SimpleSequence&utm_campaign=Badge_Grade_Dashboard)
 Is a custom sequence generator. Supports InMemory , Text File and MSSQL storage. Developers can also create their own storage providers.
 
 ## Usage
